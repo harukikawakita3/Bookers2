@@ -46,11 +46,31 @@
         <tbody>
           <tr>
             <td>
-             <% if @user.profile_image.attached? %>
-               <%= image_tag @users.get_profile_image(100,67) %>
-             <% else %>
-               <%= image_tag 'default-image', size: "100x100" %>
-             <% end %>
+              <%=link_to user_path(current_user.id) do %>
+                <% if @user.profile_image.attached? %>
+                  <%= image_tag @users.get_profile_image(100,67) %>
+                  <br>
+                  <%= @book.user.name %>
+                <% else %>
+                  <%= image_tag 'default-image', size: "100x100" %>
+                  <br>
+                  <%= @book.user.name %>
+                <% end %>
+              <% end %>
+            </td>
+            <td>
+              <%=link_to book_path do %>
+                <%= @book.title %>
+              <% end %>
+            </td>
+            <td>
+              <%= @book.body %>
+            </td>
+            <td>
+              <%=link_to "edit", edit_book_path(@book.id),class: "btn btn-sm btn-success" %>
+            </td>
+            <td>
+              <%=link_to "destroy", book_path(@book.id), class: "btn btn-sm btn-danger", method: :delete, "data-confirm"=>"本当に削除しますか？"%>
             </td>
           </tr>
         </tbody>
