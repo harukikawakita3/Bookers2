@@ -1,36 +1,37 @@
 <p id="notice"><%= notice %></p>
-<%= render "users/uc", user: @user, book: @book_new %>
-
-    <div class="col-md-8 offset-md-1">
-      <h2>Book detail</h2>
-      <table class="table">
-        <tbody>
-          <tr>
-            <td>
-              <%=link_to user_path(@user.id) do %>
-                <%= image_tag @user.get_profile_image(100,100) %><br>
-                <%= @user.name %>
-              <% end %>
-            </td>
-            <td>
-              <%=link_to book_path do %>
-                <%= @book.title %>
-              <% end %>
-            </td>
-            <td>
-              <%= @book.body %>
-            </td>
-            <% if @user==current_user %>
+<div class="container px-5 px-sm-0">
+  <%= render "users/uc", user: @user, book: @book_new %>
+  
+      <div class="col-md-8 offset-md-1">
+        <h2>Book detail</h2>
+        <table class="table">
+          <tbody>
+            <tr>
               <td>
-                <%=link_to "Edit", edit_book_path(@book.id),class: "btn btn-sm btn-success" %>
+                <%=link_to user_path(@user.id) do %>
+                  <%= image_tag @user.get_profile_image(100,100) %><br>
+                  <%= @user.name %>
+                <% end %>
               </td>
               <td>
-                <%=link_to "Destroy", book_path(@book.id), class: "btn btn-sm btn-danger", method: :delete, "data-confirm"=>"本当に削除しますか？"%>
+                <%=link_to book_path do %>
+                  <%= @book.title %>
+                <% end %>
               </td>
-            <% end %>
-          </tr>
-        </tbody>
-      </table>
+              <td>
+                <%= @book.body %>
+              </td>
+              <% if @user==current_user %>
+                <td>
+                  <%=link_to "Edit", edit_book_path(@book.id),class: "btn btn-sm btn-success" %>
+                </td>
+                <td>
+                  <%=link_to "Destroy", book_path(@book.id), class: "btn btn-sm btn-danger", method: :delete, "data-confirm"=>"本当に削除しますか？"%>
+                </td>
+              <% end %>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
 </div>
